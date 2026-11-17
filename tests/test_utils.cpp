@@ -35,6 +35,20 @@ void testF1() {
     check("matches file path", MATCHES_FILE == "data/matches.txt");
 }
 
+void testF2() {
+    cout << "\n=== F-2 ===\n";
+    printHeader("LOBBY");
+    printHeader("HEAD-TO-HEAD HISTORY");
+    printHeader("A VERY LONG TITLE THAT FILLS THE LINE");
+
+    int n;
+    cout << "Type any number and press Enter: ";
+    cin >> n;
+    pauseScreen();          // must WAIT here until you press Enter again
+    clearScreen();
+    cout << "The screen was cleared. Test finished.\n";
+}
+
 int main() {
     srand(time(0));
     int n;
@@ -43,6 +57,7 @@ int main() {
     // ===== paste each piece's line below this one =====
 
     if (n == 1 || n == 0) testF1();
+    if (n == 2 || n == 0) testF2();
 
     return 0;
 }
