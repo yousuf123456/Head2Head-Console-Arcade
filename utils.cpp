@@ -43,3 +43,79 @@ void printHeader(const string& title, int width){
     
     cout << endl;
 }
+
+int readInt(const string& prompt, int min, int max){
+    cout << prompt;
+
+    int value;
+    cin >> value;
+
+    if(cin.fail() || value < min || value > max){
+        cout << "Invalid input. Please enter a number between " << min << " and " << max << ": " << endl;
+
+        cin.clear(); // Clear the error flag on cin so that future I/O operations will work correctly
+        cin.ignore(1000, '\n');
+
+        // Recursively call the function again to ask for valid input this time
+        readInt(prompt, min, max); 
+    } else {
+        cin.ignore(1000, '\n'); // Remove the auto newline or unwanted letters character left in the buffer after reading the integer
+        cout << "You entered: " << value << endl;
+        return value;
+    }
+
+    // never reached, just avoid compiler warnings
+    return 0;
+};
+
+bool readYesNo(const string& prompt){
+    cout << prompt;
+
+    char value;
+
+    cin >> value;
+
+    if(cin.fail() || (value != 'y' && value != 'n' && value != 'Y' && value != 'N')){
+        cout << "Invalid input. Please enter 'y' or 'n': " << endl;
+        cin.clear();
+
+        // To remove the bad input from the input buffer, so it does not interfere with the next input operation
+        cin.ignore(1000, '\n'); 
+
+        // Recursively call the function again to ask for valid input this time
+        readYesNo(prompt); 
+    } else {
+        cin.ignore(1000, '\n'); 
+
+        return value == 'y' || value == 'Y'; // Return true for 'y' or 'Y', false for 'n' or 'N'
+    }
+
+    // never reached, just avoid compiler warnings
+    return true;
+}
+
+string readWord(const string& prompt){
+    cout << prompt;
+
+    string value;
+
+    cin >> value;
+
+    if(cin.fail()){
+        cout << "Invalid input. Please enter a valid word: " << endl;
+        cin.clear();
+
+        // To remove the bad input from the input buffer, so it does not interfere with the next input operation
+        cin.ignore(1000, '\n');
+
+        // Recursively call the function again to ask for valid input this time
+        readWord(prompt); 
+    } else {
+        cin.ignore(1000, '\n'); 
+
+        return value;
+    }
+
+    // never reached, just avoid compiler warnings
+    return "";
+}

@@ -49,6 +49,23 @@ void testF2() {
     cout << "The screen was cleared. Test finished.\n";
 }
 
+void testF3() {
+    cout << "\n=== F-3 ===\n";
+    // Type: abc   then  -5   then  99   then  0   then  2
+    // Each wrong answer must be refused; only 2 is accepted.
+    int n = readInt("Pick 1-4: ", 1, 4);
+    check("readInt returned 2 after refusing the wrong inputs", n == 2);
+
+    // Type: maybe   then   Y
+    check("readYesNo accepts capital Y as yes", readYesNo("Continue? (y/n): ") == true);
+
+    // Type: n
+    check("readYesNo returns false for n", readYesNo("Again? (y/n): ") == false);
+
+    // Type: ali
+    check("readWord returns the typed word", readWord("Your name: ") == "ali");
+}
+
 int main() {
     srand(time(0));
     int n;
@@ -58,6 +75,8 @@ int main() {
 
     if (n == 1 || n == 0) testF1();
     if (n == 2 || n == 0) testF2();
+    if (n == 3 || n == 0) testF3();
+
 
     return 0;
 }
