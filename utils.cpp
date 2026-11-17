@@ -3,6 +3,9 @@
 #include <string>
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 
@@ -118,4 +121,36 @@ string readWord(const string& prompt){
 
     // never reached, just avoid compiler warnings
     return "";
+}
+
+// Returns random integer between low and high (inclusive)
+int randomInt(int low, int high) {
+    return low + rand() % (high - low + 1);
+}
+
+// Returns either 1 or 2
+int coinToss() {
+    return randomInt(1, 2);
+}
+
+// Returns today's date in DD-MM-YYYY format
+string todayDate() {
+    time_t now = time(0);
+    tm* date = localtime(&now);
+
+    stringstream ss;
+    ss << put_time(date, "%d-%m-%Y");
+
+    return ss.str();
+}
+
+// Returns current time in HH:MM format
+string nowTime() {
+    time_t now = time(0);
+    tm* t = localtime(&now);
+
+    stringstream ss;
+    ss << put_time(t, "%H:%M");
+
+    return ss.str();
 }

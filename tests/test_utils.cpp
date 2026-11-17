@@ -66,6 +66,27 @@ void testF3() {
     check("readWord returns the typed word", readWord("Your name: ") == "ali");
 }
 
+void testF4() {
+    cout << "\n=== F-4 ===\n";
+
+    bool inRange = true;
+    bool seen[7] = {false};          // seen[1]..seen[6]
+    for (int i = 0; i < 1000; i++) {
+        int r = randomInt(1, 6);
+        if (r < 1 || r > 6) inRange = false;
+        else seen[r] = true;
+    }
+    check("randomInt(1, 6) never leaves 1-6", inRange);
+    check("randomInt(1, 6) produced every value", seen[1] && seen[2] && seen[3] && seen[4] && seen[5] && seen[6]);
+
+    int toss = coinToss();
+    check("coinToss gives 1 or 2", toss == 1 || toss == 2);
+
+    check("date has the form dd-mm-yyyy (10 characters)", todayDate().size() == 10);
+    check("time has the form hh:mm (5 characters)", nowTime().size() == 5);
+    cout << "Today: " << todayDate() << " " << nowTime() << "\n";
+}
+
 int main() {
     srand(time(0));
     int n;
@@ -76,6 +97,7 @@ int main() {
     if (n == 1 || n == 0) testF1();
     if (n == 2 || n == 0) testF2();
     if (n == 3 || n == 0) testF3();
+    if (n == 4 || n == 0) testF4();
 
 
     return 0;
