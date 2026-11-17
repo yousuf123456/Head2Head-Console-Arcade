@@ -19,10 +19,7 @@ void clearScreen(){
 void pauseScreen(){
     cout << "Press Enter to continue!";
 
-    // When any number is taken input before the pauseScreen() function, the input buffer will have a '\n' character left in it. 
-    // This line will ignore that character and wait for the user to press Enter.
-    cin.ignore(1000, '\n'); 
-
+    // Waits till the user presses enter
     cin.get();
 }
 
@@ -154,3 +151,13 @@ string nowTime() {
 
     return ss.str();
 }
+
+// Wait and prompt users to pass the keyboard
+void handOver(const string& toName, const string& fromName){
+    clearScreen();
+
+    cout << endl << "Pass the keyboard to " << toName << ". " << fromName << ", please look away. ";
+    pauseScreen(); // Wait for them to press enter
+
+    clearScreen();
+}; 
