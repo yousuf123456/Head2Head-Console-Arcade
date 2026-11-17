@@ -1,0 +1,8 @@
+*.exe
+*.o
+bin/
+obj/
+.vscode/
+data/players.txt
+data/matches.txt
+data/admin.txt
