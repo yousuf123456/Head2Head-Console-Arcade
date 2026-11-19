@@ -87,6 +87,16 @@ void testF4() {
     cout << "Today: " << todayDate() << " " << nowTime() << "\n";
 }
 
+// F-5 hand-over screen (check by eye)
+void testF5() {
+    cout << "\n=== F-5 ===\n";
+    // Type: 4
+    int secret = readInt("ALI, type your secret pick (1-6): ", 1, 6);
+    handOver("SARA", "ALI");     // press Enter when asked
+    cout << "If you can still see ALI's secret pick above, the screen was not cleared.\n";
+    cout << "(The pick was " << secret << ")\n";
+}
+
 int main() {
     srand(time(0));
     int n;
@@ -98,6 +108,7 @@ int main() {
     if (n == 2 || n == 0) testF2();
     if (n == 3 || n == 0) testF3();
     if (n == 4 || n == 0) testF4();
+    if (n == 5 || n == 0) testF5();
 
 
     return 0;

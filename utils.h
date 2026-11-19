@@ -13,3 +13,6 @@ int randomInt(int low, int high);   // input range inclusive
 int coinToss();                      // returns 1 or 2
 string todayDate();                  // "14-11-2026"
 string nowTime();                    // "09:05"
+
+// Wait and prompt users to pass the keyboard
+void handOver(const string& toName, const string& fromName); 
