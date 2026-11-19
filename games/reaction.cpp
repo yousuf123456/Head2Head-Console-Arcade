@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 #include "../utils.h"
 
 const int NUMBER_OF_POSSIBLE_KEYS = 6;
@@ -34,4 +35,18 @@ int keyOwner(char key) {
     }
     
     return 0;
+}
+
+// To show how many keys have they pressed right and how many keys are left to press
+void drawProgress(const string& name, const char combo[], int length, int progress) {
+
+    cout << name << "\t";
+
+    for (int j = 0; j < length;  j++){
+        // Converting the lowercase letters to uppercase letters for better visibility
+        // toupper returns ASCII value of the uppercase letter, so we need to convert it back to char
+        cout << "[" << char(toupper(combo[j])) << "] ";
+    }
+
+    cout << "\t done " << progress << "/" << length << endl;
 }
