@@ -1,13 +1,14 @@
 #pragma once
 
-#include <iostream>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
 struct Player {
     string name;
     string pin;
+    int age;
     int points = 0, wins = 0, draws = 0, losses = 0;
     bool isGuest = false;
 };
@@ -23,10 +24,8 @@ const string ADMIN_FILE = "data/admin.txt";
 const string WORDS_FILE = "data/words.txt";
 const string HANGMAN_WORDS_FILE = "data/hangman_words.txt";
 
-
 // Game points (kept constant so they are not mistakenly changed in the code)
 const int WIN_POINTS = 3, DRAW_POINTS = 1; 
-
 
 // Game names (kept constant so they are not mistakenly changed in the code)
 const string GAME_TIC_TAC_TOE = "Tic-Tac-Toe";

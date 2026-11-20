@@ -51,6 +51,39 @@ void testRXN1() {
     check("both combos always use the same columns", sameColumns);
 }
 
+// RXN-4 progress display (check by eye)
+void testRXN4() {
+    cout << "\n=== RXN-4 ===\n";
+    char combo[2][3] = { {'s','e','a'}, {'k','i','j'} };
+    drawProgress("Ali", combo[0], 3, 1);     // [S] [E] [A], 1 of 3 done
+    drawProgress("Sara", combo[1], 3, 2);    // [K] [I] [J], 2 of 3 done
+}
+
+// RXN-2 waiting phase and false start
+void testRXN2() {
+    cout << "\n=== RXN-2 ===\n";
+    cout << "Test 1: press NOTHING for 3 seconds...\n";
+    check("no key pressed -> 0", waitForGo(3000) == 0);
+
+    cout << "Test 2: within 3 seconds press  a  (a Player 1 key)\n";
+    check("Player 1 false start -> 1", waitForGo(3000) == 1);
+
+    cout << "Test 3: within 3 seconds press  z  (ignored), then  k\n";
+    check("Player 2 false start -> 2", waitForGo(3000) == 2);
+}
+
+// RXN-3 race phase
+void testRXN3() {
+    cout << "\n=== RXN-3 ===\n";
+    const char combo[2][3] = { {'s','e','a'}, {'k','i','j'} };
+
+    cout << "Test 1: type  s e a  (Ali's combo)\n";
+    check("Ali finishes first -> 1", raceRound(combo, 3, "Ali", "Sara") == 1);
+
+    cout << "Test 2: type  s w  (the wrong w resets Ali), then  k i j\n";
+    check("Sara finishes first -> 2", raceRound(combo, 3, "Ali", "Sara") == 2);
+}
+
 int main() {
     srand(time(0));
     int n;
@@ -59,6 +92,9 @@ int main() {
     // ===== paste each piece's line below this one =====
 
     if (n == 1 || n == 0) testRXN1();
-    
+    if (n == 4 || n == 0) testRXN4();
+    if (n == 2 || n == 0) testRXN2();
+    if (n == 3 || n == 0) testRXN3();
+
     return 0;
 }

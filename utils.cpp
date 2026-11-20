@@ -2,18 +2,18 @@
 
 #include <string>
 #include <iostream>
-#include <cstdlib>
 #include <ctime>
 #include <iomanip>
 #include <sstream>
 
+#include <cstdlib>
+
 using namespace std;
 
 // To use the system("cls") command to clear the console screen
-void clearScreen(){
+void clearScreen(){   
     system("cls");
 }
-
 
 // To pause the program until user presses enter
 void pauseScreen(){
@@ -23,8 +23,9 @@ void pauseScreen(){
     cin.get();
 }
 
+// title taken as reference for fast and memory efficient execution, no unnecessary copy is made
 // To print a title with equal signs on both sides
-void printHeader(const string& title, int width){
+void printHeader(const string& title, int width ){
     // Calculating the number of equal signs to print on each side of the title
     int side_equals_width = (width - title.length()) / 2; 
 
@@ -87,7 +88,7 @@ bool readYesNo(const string& prompt){
     } else {
         cin.ignore(1000, '\n'); 
 
-        return value == 'y' || value == 'Y'; // Return true for 'y' or 'Y', false for 'n' or 'N'
+        return (value == 'y' || value == 'Y'); // Return true for 'y' or 'Y', false for 'n' or 'N'
     }
 
     // never reached, just avoid compiler warnings
